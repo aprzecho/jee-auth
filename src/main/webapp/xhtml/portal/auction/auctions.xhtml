@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions">
+
+<h:body>
+	<ui:composition template="/xhtml/common/default-template.xhtml">
+		<ui:define name="content">
+		
+			<h:form>
+				<center>
+
+					Aukcje <br /> <br />
+
+					<p:dataTable id="tab-auctions" var="vAuction"
+						value="#{auctionsController.auctions}"
+						style="width:900px; font-size: 15px" widgetVar="carsTable"
+						emptyMessage="Brak wyników"
+						filteredValue="#{auctionsController.auctionsFiltered}">
+
+						<f:facet name="header">
+							<p:outputPanel>
+					
+					  Lista aukcji
+					
+						<h:outputText value="Przeszukaj:" />
+								<p:inputText id="globalFilter"
+									onkeyup="PF('carsTable').filter()" style="width:150px"
+									placeholder="Wprowadź wyrażenie" />
+
+							</p:outputPanel>
+						</f:facet>
+
+						<p:column filterBy="#{vAuction.id}" headerText="Id"
+							footerText="zawiera" filterMatchMode="contains">
+							<h:outputText value="#{vAuction.id}" />
+						</p:column>
+
+						<p:column filterBy="#{vAuction.title}" headerText="Nazwa"
+							footerText="zawiera" filterMatchMode="contains">
+							<h:outputText value="#{vAuction.title}" />
+						</p:column>
+
+						<p:column headerText="Aktualna cena" footerText="zawiera">
+							<h:outputText value="#{vAuction.currentBidValue}" />
+						</p:column>
+
+						<p:column style="width:32px;text-align: center">
+							<h:link outcome="auction" value="Go!" headerText="GO"
+								icon="ui-icon-search">
+								<f:param name="paramAuctionId" value="${vAuction.id}" />
+							</h:link>
+						</p:column>
+
+					</p:dataTable>
+				</center>
+			</h:form>
+			
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
