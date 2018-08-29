@@ -7,13 +7,18 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.aprzecho.jee.events.BidEvent;
+import com.aprzecho.jee.events.BroadcasterService;
 import com.aprzecho.jee.service.AuctionService;
 
 @Path(value = "/auctions")
 public class AuctionsApi {
 	
 	@Inject
-	AuctionService auctionService;
+	private AuctionService auctionService;
+	
+	@Inject
+	private BroadcasterService bsService;
 	
 	@POST
 	@Path("/bid")
@@ -21,6 +26,12 @@ public class AuctionsApi {
 	@Consumes({MediaType.APPLICATION_JSON})
 	public String bidAuction(AuctionModel msg) {
 		auctionService.bid(msg.getAuctionId(), msg.getBidValue());
+		
+		BidEvent be = new BidEvent();
+		be.setBidValue(msg.getBidValue());
+		be.setAuctionId(msg.getAuctionId());
+		
+		bsService.broadcastBids(be);
 		return "success";
 	}		
 }

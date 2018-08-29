@@ -17,3 +17,17 @@ function bid() {
 	var data = JSON.stringify({"auctionId": auctionId, "bidValue": bidValue});
 	xhr.send(data);
 }
+
+function refreshBid(message, channel, event) {
+	console.log("refreshing bid...");
+	var auctionId = document
+			.getElementById('form-auction:hidden-auction-id').value
+	if (message.auctionId == auctionId) {
+		var nextBid = message.nextBid;
+		document.getElementById('form-auction:input-current-bid').innerHTML = nextBid;
+		
+		PF('growlWdg').renderMessage({"summary":"Przebito ofertę!",
+            						  "detail": nextBid,
+            						  "severity":"info"});
+	}
+}

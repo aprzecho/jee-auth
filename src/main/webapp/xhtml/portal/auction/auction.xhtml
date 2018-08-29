@@ -18,11 +18,13 @@
 			<h:form id="form-auction">
 				<h:inputHidden value="#{auctionController.auction.id}"
 					id="hidden-auction-id" />
+					
+				<o:socket channel="auctionChannel" onmessage="refreshBid" />
 
 				<p:growl widgetVar="growlWdg" />
 
 				<center>
-					<table style="width: 600px">
+					<table style="width: 700px">
 						<tr>
 							<td><h:outputText value="#{auctionController.auction.title}" /></td>
 							<td><h:outputText id="input-current-bid"

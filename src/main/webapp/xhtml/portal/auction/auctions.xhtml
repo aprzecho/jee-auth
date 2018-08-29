@@ -12,7 +12,7 @@
 <h:body>
 	<ui:composition template="/xhtml/common/default-template.xhtml">
 		<ui:define name="content">
-		
+
 			<h:form>
 				<center>
 
@@ -26,12 +26,10 @@
 
 						<f:facet name="header">
 							<p:outputPanel>
-					
-					  Lista aukcji
-					
-						<h:outputText value="Przeszukaj:" />
+
+								<h:outputText value="Przeszukaj: " />
 								<p:inputText id="globalFilter"
-									onkeyup="PF('carsTable').filter()" style="width:150px"
+									onkeyup="PF('carsTable').filter()" style="width:200px"
 									placeholder="Wprowadź wyrażenie" />
 
 							</p:outputPanel>
@@ -61,7 +59,7 @@
 					</p:dataTable>
 				</center>
 			</h:form>
-			
+
 		</ui:define>
 	</ui:composition>
 </h:body>
