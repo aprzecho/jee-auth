@@ -27,6 +27,16 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<servlet>
+		<servlet-name>com.aprzecho.jee.api.config.WebApiApplication</servlet-name>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>com.aprzecho.jee.api.config.WebApiApplication</servlet-name>
+		<url-pattern>/webapi/*</url-pattern>
+	</servlet-mapping>
+
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
@@ -36,4 +46,40 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>portal area</web-resource-name>
+			<url-pattern>/xhtml/portal/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>role_login</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>rest api</web-resource-name>
+			<url-pattern>/webapi/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>role_rest</role-name>
+		</auth-constraint>
+	</security-constraint>	
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>myrealm</realm-name>
+		<form-login-config>
+			<form-login-page>/xhtml/public/login.xhtml</form-login-page>
+			<form-error-page>/xhtml/error/login-failed.xhtml</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<role-name>role_login</role-name>
+	</security-role>
+	
+	<security-role>
+		<role-name>role_rest</role-name>
+	</security-role>	
 </web-app>

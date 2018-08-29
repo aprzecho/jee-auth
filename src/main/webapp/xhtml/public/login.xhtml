@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h2>Logowanie</h2>
+	<form method="post" action="j_security_check">
+		<table>
+			<tr>
+				<td>Użytkownik:</td>
+				<td><input type="text" name="j_username" size="20" /></td>
+			</tr>
+			<tr>
+				<td>Hasło:</td>
+				<td><input type="password" name="j_password" size="20" /></td>
+			</tr>
+		</table>
+		<p></p>
+		<input type="submit" value="Zaloguj się" />
+            &nbsp;
+            <input type="reset" value="Wyczyść" />
+	</form>
+</h:body>
+</html>

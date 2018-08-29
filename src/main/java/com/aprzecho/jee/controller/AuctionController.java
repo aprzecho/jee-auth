@@ -42,8 +42,7 @@ public class AuctionController implements Serializable {
 		LOGGER.info("AuctionController initiated for auctionId=" + auction.getId());
 	}
 	
-	public void changeBid(ActionEvent actionEvent) {		
-		LOGGER.info("Bid changed: " + nextBid);		
+	public void changeBid(ActionEvent actionEvent) {			
 		auctionService.bid(auction, nextBid);
 	}
 

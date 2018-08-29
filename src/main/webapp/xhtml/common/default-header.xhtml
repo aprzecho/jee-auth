@@ -10,9 +10,16 @@
 
 <body>
 	<ui:composition>
-	<p align="right">
-	Użytkownik niezalogowany
-	</p>
+		<p align="right">
+
+			<h:panelGroup rendered="#{!toolbarController.userLogged}">
+				Użytkownik niezalogowany &nbsp; <h:link value="Zaloguj" outcome="/xhtml/public/login" />
+			</h:panelGroup>
+			<h:panelGroup rendered="#{toolbarController.userLogged}">
+				Użytkownik: &nbsp; <h:outputText value="#{toolbarController.currentUsername}" />
+			</h:panelGroup>
+		
+		</p>
 	</ui:composition>
 </body>
 </html>

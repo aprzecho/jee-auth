@@ -1,6 +1,7 @@
 package com.aprzecho.jee.service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -13,6 +14,8 @@ import com.aprzecho.jee.session.SessionRepository;
 
 @ApplicationScoped
 public class AuctionService {
+	
+	private static final Logger LOGGER = Logger.getLogger(AuctionService.class.getName());
 	
 	@Inject
 	AuctionDAO auctionDAO;
@@ -29,10 +32,17 @@ public class AuctionService {
 	}
 	
 	@Transactional
+	public void bid(int auctionId, Integer nextBidValue) {
+		Auction auction = auctionDAO.findOne(auctionId);
+		bid(auction, nextBidValue);
+	}	
+	
+	@Transactional
 	public void bid(Auction auction, Integer nextBidValue) {
 		AuctionBid newBid = auction.addBid(nextBidValue, sessionRepository.getCurrentUsername());
 		auction.setCurrentBid(newBid);
 		auctionDAO.update(auction);
+		LOGGER.info("Bid changed: " + nextBidValue);	
 	}
 	
 }

@@ -12,7 +12,9 @@
 <h:body>
 	<ui:composition template="/xhtml/common/default-template.xhtml">
 		<ui:define name="content">
-		
+
+			<h:outputScript library="js" name="auction.js" target="body" />
+
 			<h:form id="form-auction">
 				<h:inputHidden value="#{auctionController.auction.id}"
 					id="hidden-auction-id" />
@@ -27,9 +29,8 @@
 									value="#{auctionController.auction.currentBidValue}" /></td>
 							<td><p:inputText id="input-next-bid"
 									value="#{auctionController.nextBid}" /></td>
-							<td><p:commandButton value="Przebij" id="button-bid"
-									actionListener="#{auctionController.changeBid}" ajax="true"
-									update="input-current-bid">
+							<td><p:commandButton type="button" value="Przebij"
+									id="button-bid" onclick="bid();" update="input-current-bid">
 								</p:commandButton></td>
 						</tr>
 					</table>
@@ -38,7 +39,7 @@
 
 				</center>
 			</h:form>
-			
+
 		</ui:define>
 	</ui:composition>
 </h:body>
