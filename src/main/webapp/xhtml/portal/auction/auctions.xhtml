@@ -45,15 +45,15 @@
 							<h:outputText value="#{vAuction.title}" />
 						</p:column>
 
-						<p:column headerText="Aktualna cena" footerText="zawiera">
+						<p:column headerText="Aktualna cena">
 							<h:outputText value="#{vAuction.currentBidValue}" />
 						</p:column>
 
-						<p:column style="width:32px;text-align: center">
-							<h:link outcome="auction" value="Go!" headerText="GO"
+						<p:column style="width:90px;text-align: center" headerText="Licytacja">
+							<p:button outcome="auction" value="Licytuj"
 								icon="ui-icon-search">
 								<f:param name="paramAuctionId" value="${vAuction.id}" />
-							</h:link>
+							</p:button>
 						</p:column>
 
 					</p:dataTable>

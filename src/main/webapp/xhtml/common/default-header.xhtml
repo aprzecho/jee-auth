@@ -10,16 +10,41 @@
 
 <body>
 	<ui:composition>
-		<p align="right">
 
-			<h:panelGroup rendered="#{!toolbarController.userLogged}">
-				Użytkownik niezalogowany &nbsp; <h:link value="Zaloguj" outcome="/xhtml/public/login" />
-			</h:panelGroup>
-			<h:panelGroup rendered="#{toolbarController.userLogged}">
-				Użytkownik: &nbsp; <h:outputText value="#{toolbarController.currentUsername}" />
-			</h:panelGroup>
-		
-		</p>
+		<h:form>
+			<table style="width: 100%" cellpadding="0" cellspacing="0">
+				<tr>
+					<td style="width: 50%">
+						<p align="left">
+							<p:commandButton id="dynaButton" value="Menu" type="button"
+								icon="ui-icon-extlink" />
+							<p:menu overlay="true" trigger="dynaButton" my="left top"
+								at="left bottom">
+								<p:menuitem value="Aukcje"
+									outcome="/xhtml/portal/auction/auctions" />
+								<p:menuitem value="Start" outcome="/xhtml/index" />
+							</p:menu>
+						</p>
+					</td>
+
+					<td><p align="right">
+							<h:panelGroup rendered="#{!toolbarController.userLogged}">
+					Użytkownik niezalogowany &nbsp; 
+					<p:button value="Zaloguj" outcome="/xhtml/public/login" />
+							</h:panelGroup>
+							<h:panelGroup rendered="#{toolbarController.userLogged}">
+				Użytkownik: &nbsp; <h:outputText
+									value="#{toolbarController.currentUsername}" /> &nbsp; &nbsp;
+								<p:commandButton value="Wyloguj" id="btn-logout"
+									actionListener="#{toolbarController.logout}" ajax="false" />
+							</h:panelGroup>
+						</p></td>
+				</tr>
+			</table>
+		</h:form>
+
+		<hr style="border-top: 1px solid #000000; background: transparent;" />
+
 	</ui:composition>
 </body>
 </html>
